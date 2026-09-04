@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="assets/async-crypto-logo.svg" width="170" alt="Async Crypto logo">
-</p>
-
 <h1 align="center">Async Crypto</h1>
 
 <p align="center">
@@ -62,29 +58,23 @@ Prebuilt binaries are available in `dist/`.
 
 | File | Platform | Architecture | Install as |
 | --- | --- | --- | --- |
-| `dist/async_crypto-linux-x86_64.so` | Linux | x86_64 / 64-bit | `plugins/async_crypto.so` |
-| `dist/async_crypto-linux-i686.so` | Linux | i686 / 32-bit | `plugins/async_crypto.so` |
-| `dist/async_crypto-windows-x86_64.dll` | Windows | x86_64 / 64-bit | `plugins/async_crypto.dll` |
-| `dist/async_crypto-windows-i686.dll` | Windows | i686 / 32-bit | `plugins/async_crypto.dll` |
-| `dist/async_crypto-binaries.tar.gz` | All | All packaged builds | Extract selected platform folder |
+| `dist/async_crypto-linux-x86_64.tar.gz` | Linux | x86_64 / 64-bit | Extract, then copy `plugins/async_crypto.so` |
+| `dist/async_crypto-linux-i686.tar.gz` | Linux | i686 / 32-bit | Extract, then copy `plugins/async_crypto.so` |
+| `dist/async_crypto-windows-x86_64.zip` | Windows | x86_64 / 64-bit | Extract, then copy `plugins/async_crypto.dll` |
+| `dist/async_crypto-windows-i686.zip` | Windows | i686 / 32-bit | Extract, then copy `plugins/async_crypto.dll` |
 | `dist/SHA256SUMS.txt` | All | Checksums | Integrity verification |
 
 Package layout:
 
 ```text
-dist/packages/
-  linux-i686/
-    plugins/async_crypto.so
-    pawno/include/async_crypto.inc
-  linux-x86_64/
-    plugins/async_crypto.so
-    pawno/include/async_crypto.inc
-  windows-i686/
-    plugins/async_crypto.dll
-    pawno/include/async_crypto.inc
-  windows-x86_64/
-    plugins/async_crypto.dll
-    pawno/include/async_crypto.inc
+plugins/
+  async_crypto.so      # Linux packages
+  async_crypto.dll     # Windows packages
+pawno/include/
+  async_crypto.inc
+example.pwn
+README.md
+LICENSE
 ```
 
 ## Compatibility
@@ -105,10 +95,10 @@ This plugin does not hook RakNet, patch memory, or depend on SA-MP internal addr
 
 | Server | Use this binary | Destination |
 | --- | --- | --- |
-| Linux 64-bit | `async_crypto-linux-x86_64.so` | `plugins/async_crypto.so` |
-| Linux 32-bit | `async_crypto-linux-i686.so` | `plugins/async_crypto.so` |
-| Windows 64-bit | `async_crypto-windows-x86_64.dll` | `plugins/async_crypto.dll` |
-| Windows 32-bit | `async_crypto-windows-i686.dll` | `plugins/async_crypto.dll` |
+| Linux 64-bit | `async_crypto-linux-x86_64.tar.gz` | `plugins/async_crypto.so` |
+| Linux 32-bit | `async_crypto-linux-i686.tar.gz` | `plugins/async_crypto.so` |
+| Windows 64-bit | `async_crypto-windows-x86_64.zip` | `plugins/async_crypto.dll` |
+| Windows 32-bit | `async_crypto-windows-i686.zip` | `plugins/async_crypto.dll` |
 
 ### 2. Install The Pawn Include
 
@@ -360,6 +350,50 @@ cd dist
 sha256sum -c SHA256SUMS.txt
 ```
 
+## Publishing a GitHub Release
+
+Use GitHub Releases for public downloads. Releases are designed for versioned software packages, release notes, and binary assets.
+
+### Recommended Assets
+
+Attach these files to each release:
+
+| Asset | Purpose |
+| --- | --- |
+| `dist/async_crypto-linux-x86_64.tar.gz` | Ready-to-extract Linux 64-bit package. |
+| `dist/async_crypto-linux-i686.tar.gz` | Ready-to-extract Linux 32-bit package. |
+| `dist/async_crypto-windows-x86_64.zip` | Ready-to-extract Windows 64-bit package. |
+| `dist/async_crypto-windows-i686.zip` | Ready-to-extract Windows 32-bit package. |
+| `dist/SHA256SUMS.txt` | Integrity checksums. |
+
+### Release With GitHub CLI
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+
+gh release create v1.0.0 \
+  dist/async_crypto-linux-x86_64.tar.gz \
+  dist/async_crypto-linux-i686.tar.gz \
+  dist/async_crypto-windows-x86_64.zip \
+  dist/async_crypto-windows-i686.zip \
+  dist/SHA256SUMS.txt \
+  --title "Async Crypto v1.0.0" \
+  --notes "Initial release with async Argon2id hashing, verification, and crypto utilities for SA-MP/open.mp."
+```
+
+### Release From The GitHub Website
+
+| Step | Action |
+| ---: | --- |
+| 1 | Open the repository on GitHub. |
+| 2 | Click `Releases` on the repository page. |
+| 3 | Click `Draft a new release`. |
+| 4 | Create or choose a tag, for example `v1.0.0`. |
+| 5 | Set the release title, for example `Async Crypto v1.0.0`. |
+| 6 | Drag the files from the recommended assets table into the binary upload area. |
+| 7 | Click `Publish release`. |
+
 ## License
 
-Project license is not declared yet. Add a `LICENSE` file before publishing binaries publicly.
+Async Crypto is released under the MIT License. See [`LICENSE`](LICENSE) for details.

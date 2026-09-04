@@ -11,3 +11,7 @@ cmake_install.cmake
 *.a
 *.lib
 *.exp
+
+dist/packages/
+dist/*.so
+dist/*.dll
