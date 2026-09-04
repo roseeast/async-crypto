@@ -366,34 +366,6 @@ Attach these files to each release:
 | `dist/async_crypto-windows-i686.zip` | Ready-to-extract Windows 32-bit package. |
 | `dist/SHA256SUMS.txt` | Integrity checksums. |
 
-### Release With GitHub CLI
-
-```bash
-git tag v1.0.0
-git push origin v1.0.0
-
-gh release create v1.0.0 \
-  dist/async_crypto-linux-x86_64.tar.gz \
-  dist/async_crypto-linux-i686.tar.gz \
-  dist/async_crypto-windows-x86_64.zip \
-  dist/async_crypto-windows-i686.zip \
-  dist/SHA256SUMS.txt \
-  --title "Async Crypto v1.0.0" \
-  --notes "Initial release with async Argon2id hashing, verification, and crypto utilities for SA-MP/open.mp."
-```
-
-### Release From The GitHub Website
-
-| Step | Action |
-| ---: | --- |
-| 1 | Open the repository on GitHub. |
-| 2 | Click `Releases` on the repository page. |
-| 3 | Click `Draft a new release`. |
-| 4 | Create or choose a tag, for example `v1.0.0`. |
-| 5 | Set the release title, for example `Async Crypto v1.0.0`. |
-| 6 | Drag the files from the recommended assets table into the binary upload area. |
-| 7 | Click `Publish release`. |
-
 ## License
 
 Async Crypto is released under the MIT License. See [`LICENSE`](LICENSE) for details.
